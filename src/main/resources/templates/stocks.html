@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stock List</title>
+</head>
+<body>
+<h1>Available Stocks</h1>
+<table border="1">
+    <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="stock : ${stocks}">
+        <td th:text="${stock.symbol}"></td>
+        <td th:text="${stock.name}"></td>
+        <td th:text="${stock.price}"></td>
+        <td>
+            <form th:action="@{/buy}" method="post">
+                <input type="hidden" name="symbol" th:value="${stock.symbol}"/>
+                <input type="number" name="quantity" min="1" value="1"/>
+                <input type="submit" value="Buy"/>
+            </form>
+        </td>
+    </tr>
+</table>
+<a href="/portfolio">View Portfolio</a>
+<a href="/logout">Logout</a>
+</body>
+</html>

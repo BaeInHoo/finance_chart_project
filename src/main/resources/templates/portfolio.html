@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Portfolio</title>
+</head>
+<body>
+<h1>My Portfolio</h1>
+<table border="1">
+    <tr>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="portfolio : ${portfolio}">
+        <td th:text="${portfolio.stock.symbol}"></td>
+        <td th:text="${portfolio.stock.name}"></td>
+        <td th:text="${portfolio.quantity}"></td>
+        <td th:text="${portfolio.stock.price}"></td>
+        <td>
+            <form th:action="@{/sell}" method="post">
+                <input type="hidden" name="symbol" th:value="${portfolio.stock.symbol}"/>
+                <input type="number" name="quantity" min="1" th:value="1"/>
+                <input type="submit" value="Sell"/>
+            </form>
+        </td>
+    </tr>
+</table>
+<a href="/stocks">Back to Stocks</a>
+<a href="/logout">Logout</a>
+</body>
+</html>
