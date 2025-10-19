@@ -1,12 +1,11 @@
 package kakarote.finance_chart_project.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,8 +16,9 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
-    private String password;
-    private double balance; // 잔고
+    private double balance;
+
+    @OneToMany(mappedBy = "user")
+    private List<Portfolio> portfolio;
 }

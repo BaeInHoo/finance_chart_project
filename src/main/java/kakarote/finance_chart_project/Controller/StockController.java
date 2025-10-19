@@ -27,18 +27,18 @@ public class StockController {
     public String viewPortfolio(Model model, Authentication authentication) {
         String username = authentication.getName();
         model.addAttribute("portfolio", tradingService.getPortfolio(username));
-        return "portfolio";
+        return "/portfolio";
     }
 
     @PostMapping("/buy")
     public String buyStock(@RequestParam String symbol, @RequestParam int quantity, Authentication authentication) {
         tradingService.buyStock(authentication.getName(), symbol, quantity);
-        return "redirect:/portfolio";
+        return "/portfolio";
     }
 
     @PostMapping("/sell")
     public String sellStock(@RequestParam String symbol, @RequestParam int quantity, Authentication authentication) {
         tradingService.sellStock(authentication.getName(), symbol, quantity);
-        return "redirect:/portfolio";
+        return "/portfolio";
     }
 }

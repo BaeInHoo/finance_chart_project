@@ -16,12 +16,8 @@ public class Portfolio {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "stock_id")
-    private Stock stock;
-
-    private int quantity; // 보유 주식 수
+    private String stockSymbol;
+    private int quantity;
 }

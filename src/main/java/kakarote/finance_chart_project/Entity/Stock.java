@@ -16,8 +16,6 @@ public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     private String symbol; // 주식코드
     private String name; // 주식 이름
     private double price; // 현재 가격
